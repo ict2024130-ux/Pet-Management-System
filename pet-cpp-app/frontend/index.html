@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ANIMAL ID</title>
+  <link rel="stylesheet" href="/css/style.css">
+  
+</head>
+<body data-tab="{{ACTIVE_TAB}}" class="body_background">
+  <header>
+    <h1>ANIMALS ID </h1>
+    <nav>
+      <button type="button" class="tab" data-tab="owners">Owners</button>
+      <button type="button" class="tab" data-tab="pets">Pets</button>
+      <button type="button" class="tab" data-tab="vaccinations">Vaccinations</button>
+    </nav>
+  </header>
+
+  <main>
+    {{MESSAGE}}
+
+    <!-- OWNERS -->
+    <section id="owners" class="panel">
+      <div class="card">
+        <h2>Register Owner</h2>
+        <form method="post" action="/owners/add" class="grid">
+          <label>Full Name *<input name="full_name" required></label>
+          <label>NIC *<input name="nic" required></label>
+          <label>Address<input name="address"></label>
+          <label>Phone<input name="phone"></label>
+          <label>Email<input name="email" type="email"></label>
+          <div class="actions"><button type="submit" class="primary">Register Owner</button></div>
+        </form>
+      </div>
+      <div class="card">
+        <h2>Owners</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>ID</th><th>Name</th><th>NIC</th><th>Address</th><th>Phone</th><th>Email</th></tr></thead>
+            <tbody>
+{{OWNER_ROWS}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- PETS -->
+    <section id="pets" class="panel">
+      <div class="card">
+        <h2>Register Pet</h2>
+        <form method="post" action="/pets/add" class="grid">
+          <label>Owner *<select name="owner_id" required>
+{{OWNER_OPTIONS}}
+          </select></label>
+          <label>Registration No *<input name="registration_no" required></label>
+          <label>Pet Name *<input name="pet_name" required></label>
+          <label>Species<input name="species"></label>
+          <label>Breed<input name="breed"></label>
+          <label>Gender
+            <select name="gender">
+              <option value="">-</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </label>
+          <label>Date of Birth<input name="date_of_birth" type="date"></label>
+          <label>Color<input name="color"></label>
+          <div class="actions"><button type="submit" class="primary">Register Pet</button></div>
+        </form>
+      </div>
+      <div class="card">
+        <div class="row">
+          <h2>Pets</h2>
+          <form method="get" action="/" class="search">
+            <input type="hidden" name="tab" value="pets">
+            <input name="search" value="{{SEARCH_VALUE}}" placeholder="Search by Registration No">
+            <button type="submit">Search</button>
+            <a class="btn-link" href="/?tab=pets">Show All</a>
+          </form>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>ID</th><th>Reg No</th><th>Owner</th><th>Name</th><th>Species</th><th>Breed</th>
+                  <th>Gender</th><th>DOB</th><th>Color</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+{{PET_ROWS}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- VACCINATIONS -->
+    <section id="vaccinations" class="panel">
+      <div class="card">
+        <h2>Register Vaccination</h2>
+        <form method="post" action="/vaccinations/add" class="grid">
+          <label>Pet *<select name="pet_id" required>
+{{PET_OPTIONS}}
+          </select></label>
+          <label>Vaccine Name *<input name="vaccine_name" required></label>
+          <label>Vaccination Date<input name="vaccination_date" type="date"></label>
+          <label>Next Due Date<input name="next_due_date" type="date"></label>
+          <div class="actions"><button type="submit" class="primary">Register Vaccination</button></div>
+        </form>
+      </div>
+      <div class="card">
+        <h2>Vaccinations</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>ID</th><th>Pet</th><th>Vaccine</th><th>Date</th><th>Next Due</th></tr></thead>
+            <tbody>
+{{VACC_ROWS}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Edit pet dialog -->
+  <dialog id="editDialog">
+    <form method="post" action="/pets/update" class="grid">
+      <h2 class="full">Update Pet</h2>
+      <input type="hidden" name="pet_id" id="editPetId">
+      <label>Pet Name *<input name="pet_name" id="editName" required></label>
+      <label>Species<input name="species" id="editSpecies"></label>
+      <label>Breed<input name="breed" id="editBreed"></label>
+      <label>Gender
+        <select name="gender" id="editGender">
+          <option value="">-</option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+      </label>
+      <label>Date of Birth<input name="date_of_birth" id="editDob" type="date"></label>
+      <label>Color<input name="color" id="editColor"></label>
+      <div class="actions full">
+        <button type="button" id="editCancel">Cancel</button>
+        <button type="submit" class="primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
