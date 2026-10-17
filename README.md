@@ -794,6 +794,16 @@ The `httplib.h` library is distributed under the MIT License. Check the license 
 - The cpp-httplib project.
 - Open-source software contributors.
 
+
+
+## Demonstration Video & Walkthrough
+
+To see the live deployment, interface navigation, and database connectivity in action, please watch our video demonstration.
+
+📺 Watch the Demonstration
+
+https://youtu.be/8DTMPoQSihw?si=suls8MZKJvJoLJxM
+
 ---
 
 **Pet Registration System — Managing pet owners, pets, and vaccination records in one place.**
