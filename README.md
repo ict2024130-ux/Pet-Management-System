@@ -191,6 +191,9 @@ The application follows a simple three-layer architecture.
 ## 📊 Entity-Relationship (ER) Diagram
 
 ![Pet Management System ER Diagram](docs/eer_diagram.jpeg)
+<p align="center">
+  <img src="ERMS FINAL ER _page-0001.jpg" alt="ER Diagram" width="800"/>
+</p>
 
 ### ER Diagram Explanation
 
